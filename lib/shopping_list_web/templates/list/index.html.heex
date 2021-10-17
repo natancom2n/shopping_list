@@ -1,0 +1,30 @@
+<h1>Listing Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Completed</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for list <- @lists do %>
+    <tr>
+      <td><%= list.product %></td>
+      <td><%= list.price %></td>
+      <td><%= list.completed %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.list_path(@conn, :show, list) %></span>
+        <span><%= link "Edit", to: Routes.list_path(@conn, :edit, list) %></span>
+        <span><%= link "Delete", to: Routes.list_path(@conn, :delete, list), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Item", to: Routes.list_path(@conn, :new) %></span>
