@@ -45,7 +45,13 @@ defmodule ShoppingListWeb.Router do
   scope "/", ShoppingListWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/index2", PageController, :index
+  end
+
+  scope "/", ShoppingListWeb do
+    #pipe_through :browser
+    pipe_through [:browser, :protected]
+    get "/", ListController, :index
   end
 
   scope "/", ShoppingListWeb do
